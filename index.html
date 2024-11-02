@@ -1,409 +1,738 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mind Wave</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>MindWaveDAO - Invest With Integrity</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        :root {
+            --primary-color: #B79B30;
+            --secondary-color: #FF4444;
+            --dark-bg: #2a2a2a;
+            --text-color: #ffffff;
+            --accent-yellow: #B79B30;
+            --accent-blue: #4169E1;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            background-color: #121212;
-            color: white;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
-        .container {
-            display: flex;
-            height: 85vh;
-            padding-top: 50px;
+
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            z-index: 1;
         }
-        header {
-            position: fixed;
+
+        body::before {
+            content: "";
+            position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            padding: 20px 40px;
+            bottom: 0;
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.3) contrast(0.7) saturate(0.5);
+            z-index: -1;
+        }
+
+        /* Navigation Styles */
+        .nav-container {
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
-            background-color: #121212;
-            z-index: 1000;
-            height: 60px;
-        
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
             align-items: center;
-        }
-        nav ul {
-            display: flex;
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            align-items: center;
-        }
-        nav ul li {
-            margin-left: 30px;
-        }
-        nav ul li:not(:last-child) {
-            padding: 10px 15px;
-            border-radius: 20px;
-            transition: background-color 0.3s;
-        }
-        nav ul li:not(:last-child):hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        .contact-btn {
-            background-color: #0e9aa9;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            transition: background-color 0.3s;
-        }
-        .bor {
-            border: 2px solid rgb(233, 223, 223);
-        }
-        .contact-btn:hover {
-            background-color: #040504;
-        }
-        .contact-btn::after {
-            content: '→';
-            margin-left: 10px;
-            font-size: 18px;
-        }
-        .left-side {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .right-side {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            padding: 50px;
-            border-left: 2px solid #333;
-        }
-        h1, h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 78px;
-            margin: 0;
-            padding: 0;
-        }
-        p {
-            margin: 0;
-            padding: 0;
-            font-size: 18px;
-        }
-        .team{
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            margin: 0;
-            padding: 0;
-            justify-items: center;
-            justify-content: center;
-        }
-        .offers-container {
-            position: relative;
-            border: 2px solid rgb(233, 223, 223);
-        }
-        .offers-bar {
-            position: fixed;
-            top: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80vw;
-            background-color: #1E1E1E;
             padding: 20px;
-            display: none;
-            z-index: 999;
-        }
-        .offers-grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
-        .offer-card {
-            flex: 1;
-            max-width: 300px;
-            padding: 20px;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .offer-card h3 {
-            margin-top: 0;
-            font-size: 18px;
-        }
-        .offer-card p {
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-        .offer-card:nth-child(1) { background-color: #4CAF50; }
-        .offer-card:nth-child(2) { background-color: #FFC107; }
-        .offer-card:nth-child(3) { background-color: #2196F3; }
-        .arrow-btn {
-            align-self: flex-end;
-            background: none;
-            border: 1px solid rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 18px;
-        }
-        h4.fade-text {
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-            position: sticky;
-        }
-        .cta-button {
-            background-color: #0e9aa9;
+
+        .nav-logo {
             color: white;
-            padding: 15px 30px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .enter-app-btn {
+            background-color: rgb(99, 94, 94);
+            color: white;
             border: none;
-            border-radius: 30px;
-            font-size: 18px;
+            padding: 12px 32px;  /* Increased horizontal padding */
+            border-radius: 50px;  /* Increased border-radius for oval shape */
+            font-size: 1.1rem;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-            margin-top: 30px;
-            display: inline-block;
+            transition: all 0.3s ease;  /* Added transition for all properties */
         }
-        .cta-button:hover {
-            background-color: #0c8291;
-            transform: scale(1.05);
+
+        .enter-app-btn:hover {
+            background-color: rgb(137, 134, 134);
+            transform: scale(1.05);  /* Added slight scale effect on hover */
         }
-        .interactive-boxes {
+
+        .pre-footer-button {
             display: flex;
-            justify-content: space-around;
-            margin-top: 50px;
+            justify-content: flex-end;
+            padding: 20px 0;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        .box {
-            width: 300px;
-            height: 300px;
-            position: relative;
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo-container {
+            padding: 2rem 0;
+            text-align: center;
             overflow: hidden;
-            cursor: pointer;
-            border: 2px solid rgb(233, 223, 223);
         }
-        .box-content {
+
+        .logo {
+    width: 400px;
+    height: 400px;
+    animation: spinAndSlide 1.5s ease-out;
+    will-change: transform;
+}
+
+@keyframes spinAndSlide {
+    0% {
+        transform: translateX(100vw) rotate(0deg);
+    }
+    100% {
+        transform: translateX(0) rotate(720deg);
+    }
+}
+
+.brand-name {
+    color: var(--accent-yellow);
+    font-size: 4rem;
+    margin-top: 0.5rem;
+    height: 3rem;
+}
+
+.brand-name span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    will-change: transform, opacity;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .hero.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-bg {
             position: absolute;
             top: 0;
-            left: 0;
             right: 0;
-            bottom: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: left;
-            align-items: center;
-            background-color:  #338d8d;
-            transition: background-color 0.3s;
-        }
-        .box-overlay {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            height: 0;
-            background-color: #f0f4f4;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: height 0.5s ease;
-            overflow: hidden;
-        }
-        .box:hover .box-overlay {
+            width: 50%;
             height: 100%;
+            opacity: 0.1;
+            z-index: -1;
         }
-        .box-overlay-content {
-            padding: 20px;
-            text-align: center;
+
+        .pioneering {
+            padding: 4rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .pioneering-text {
             opacity: 0;
-            transition: opacity 0.3s ease 0.2s;
+            transform: translateX(-100px);
+            transition: all 1s ease-out;
         }
-        .box:hover .box-overlay-content {
+
+        .pioneering-text.visible {
             opacity: 1;
-        }
-        .logo-container {
-            width: 400px;
-            height: 200px;
+            transform: translateX(0);
         }
 
-        .spinning-logo {
+        .pioneering-text h2 {
+            color: var(--accent-yellow);
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pioneering-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .decorative-network {
+            position: relative;
+            height: 400px;
+            width: 500px;
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 1s ease-out;
+        }
+
+        .decorative-network.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .decorative-network img {
             width: 100%;
-            height: auto;
-            animation: spin 5s linear infinite;
+            height: 100%;
+            object-fit: contain;
         }
 
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
+        .pioneering1 {
+            padding: 4rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
         }
 
+        .pioneering1-text {
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 1s ease-out;
+        }
+
+        .pioneering1-text.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .pioneering1-text h2 {
+            color: var(--accent-yellow);
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pioneering1-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .decorative1-network {
+            position: relative;
+            height: 500px;
+            width: 500px;
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: all 1s ease-out;
+        }
+
+        .decorative1-network.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .decorative1-network img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .trading-strategies {
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .trading-strategies.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .trading-strategies h2 {
+            color: var(--accent-yellow);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .strategy-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: left;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .strategy-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .strategy-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            padding: 15px 20px;
+            color: #fff;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .footer.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-logo {
+            height: 20px;
+            margin-right: 8px;
+        }
+
+        .company-name {
+            font-size: 18px;
+        }
+
+        .copyright {
+            margin: 0 20px;
+            font-size: 14px;
+        }
+
+        .social-icons {
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+        }
+
+        .icon {
+            color: #fff;
+            margin: 0 8px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .icon:hover {
+            color: #d1d1d1;
+        }
+
+
+        @media (max-width: 768px) {
+    .nav-container {
+        padding: 10px;
+    }
+
+    .nav-logo {
+        font-size: 1.2rem;
+    }
+
+    .enter-app-btn {
+        padding: 8px 24px;
+        font-size: 1rem;
+    }
+
+    .logo {
+        width: 200px;
+        height: 200px;
+    }
+
+    .brand-name {
+        font-size: 2.5rem;
+        margin-top: 0.3rem;
+        height: 2rem;
+    }
+
+    .hero {
+        padding: 2rem 0;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+        margin-bottom: 0.3rem;
+        padding: 0 15px;
+    }
+
+    .pioneering, .pioneering1 {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 2rem 0;
+    }
+
+    .pioneering-text, .pioneering1-text {
+        padding: 0 15px;
+    }
+
+    .pioneering-text h2, .pioneering1-text h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .pioneering-text p, .pioneering1-text p {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .decorative-network, .decorative1-network {
+        height: 250px;
+        width: 100%;
+        padding: 0 15px;
+    }
+
+    .decorative-network img, .decorative1-network img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .trading-strategies {
+        padding: 2rem 0;
+        margin-bottom: 2rem;
+    }
+
+    .trading-strategies h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        padding: 0 15px;
+    }
+
+    .strategy-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-top: 2rem;
+        padding: 0 15px;
+    }
+
+    .strategy-card {
+        padding: 1.5rem;
+    }
+
+    .strategy-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .strategy-card p {
+        font-size: 0.9rem;
+    }
+
+    .strategy-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .pre-footer-button {
+        padding: 15px;
+    }
+
+    .footer {
+        padding: 20px 15px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .logo-section {
+        justify-content: center;
+    }
+
+    .footer-logo {
+        height: 16px;
+    }
+
+    .company-name {
+        font-size: 16px;
+    }
+
+    .copyright {
+        margin: 10px 0;
+        font-size: 12px;
+    }
+
+    .social-icons {
+        justify-content: center;
+        font-size: 18px;
+    }
+
+    .icon {
+        margin: 0 12px;
+    }
+}
+
+/* Add styles for extra small devices */
+@media (max-width: 480px) {
+    .logo {
+        width: 150px;
+        height: 150px;
+    }
+
+    .brand-name {
+        font-size: 2rem;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .pioneering-text h2, .pioneering1-text h2 {
+        font-size: 1.8rem;
+    }
+
+    .decorative-network, .decorative1-network {
+        height: 200px;
+    }
+}
+        
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">MIND WAVE</div>
-        <nav>
-            <ul>
-                <li class="offers-container">
-                    <span id="nos-offres">COMMUNITY ▼</span>
-                    <div class="offers-bar">
-                        <div class="offers-grid">
-                            <div class="offer-card">
-                                <h3>TELEGRAM</h3>
-                                <p>Join our cammunity to know the latest updates of Wave+</p>
-                                <button class="arrow-btn">→</button>
-                            </div>
-                            <div class="offer-card">
-                                <h3>DISCORD</h3>
-                                <p>Connect with us on Discord</p>
-                                <button class="arrow-btn">→</button>
-                            </div>
-                            <div class="offer-card">
-                                <h3>X PLATFORM</h3>
-                                <p>Follow us for the latest updates</p>
-                                <button class="arrow-btn">→</button>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="bor">About Us</li>
-                <li class="bor">Contact</li>
-                <li><button class="contact-btn">WAVE+</button></li>
-            </ul>
-        </nav>
-    </header>
-    <div class="container">
-        <div class="left-side">
-            <div class="logo-container">
-        <img src="logo.webp" class="spinning-logo">
+    <!-- Navigation -->
+    <div class="nav-container">
+        <div class="nav-logo">MindWaveDAO</div>
+        <a href="second.html">
+        <button class="enter-app-btn">Enter app</button>
+        </a>
     </div>
-        </div>
-        <div class="right-side">
-            <br><br><br>
-            <p style="color: #0e9aa9;">LET CRYPTO WORK FOR YOUR FUTURE</p>
-            <h1>Play for <br> Your Goals </h1>
-            <h4 class="fade-text">Play for <br> Your Future</h4>
-            <p>The true measure of a gamer is not how many times they win, but how many times they rise after falling.</p>
-        </div>
-    </div>
-    <div><center><br><br>
-    <button class="cta-button">Start Your Journey</button>
-    </center></div>
-    <br><br><br><br>
-    <div class="team"><center>Team of Dreamers and Doers</center></div>
-    <br>
 
-    <div class="interactive-boxes">
-        
-        <div class="box">
-            <div class="box-content">
-                <h3>Nabeel Hamza</h3>
-                <p>CO-FOUNDER & CEO</p>
+    <div class="container">
+        <div class="logo-container">
+            <img src="logo.webp" alt="MindWaveDAO Logo" class="logo">
+            <div class="brand-name" id="brandName"></div>
+        </div>
+
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <h1>Invest With Integrity.<br>Lead the Change</h1>
+        </section>
+
+        <section class="pioneering">
+            <div class="pioneering-text">
+                <h2>Pioneering the Future</h2>
+                <p>MindWave is transforming the digital asset management space by addressing 2 prevalent challenges faced by the crypto market participants: security of assets, and liquidity.</p>
+                <p>With it's substantial Bitcoin portfolio, MindWave strategically invests to optimize returns for its investors and minimize risk. By diversifying investments into yield-generating strategies and carefully selected DeFi projects, participants benefit from secure returns and rewards. MindWave's innovative approach ensures a conducive environment for growth and stability in the digital asset landscape.</p>
             </div>
-            <div class="box-overlay">
-                <div class="box-overlay-content">
-                    <img src="nabeel.jpg" width="300"/>
+            <div class="decorative-network">
+                <img src="rr.jpg" alt="Network Visualization">
+            </div>
+        </section>
+
+        <section class="pioneering1">
+            <div class="decorative1-network">
+                <img src="rrrr.png" alt="Network Visualization">
+            </div>
+            <div class="pioneering1-text">
+                <h2>Yield-Generating Trading Strategies</h2>
+                <p>Our overall trading strategy includes identifying opportunities on the volatility surface, exploiting arbitrage opportunities in key derivatives markets, such as cash vs perpetual, futures and cross-exchange, and incorporating AI and quantitative methodologies and tools to identify opportunities.</p>
+            </div>
+        </section>
+
+        <section class="trading-strategies">
+            <div class="strategy-grid">
+                <div class="strategy-card">
+                    <img src="1.png" alt="Covered Calls Icon" class="strategy-icon">
+                    <h3>Covered Calls</h3>
+                    <p>The Covered Call strategy leveraging BTC's base as a collateral maximizes the risk premium by selling calls at the peaks as low as 5% probability with a leverage of 1:1.</p>
+                </div>
+                <div class="strategy-card">
+                    <img src="2.png" alt="Negative Gamma Icon" class="strategy-icon">
+                    <h3>Negative Gamma</h3>
+                    <p>The Negative Gamma Strategy employing BTC trades the ETH/BTC ratio with directional bias depending on fundamental blockchain signals with leverage up to 1:3.</p>
+                </div>
+                <div class="strategy-card">
+                    <img src="3.png" alt="Volatility Trading Icon" class="strategy-icon">
+                    <h3>Volatility Trading</h3>
+                    <p>Usually Trading volatility using base area statistics on the volatility surface, and systematic projects, Beta is actively managed and delta hedging is employed.</p>
                 </div>
             </div>
+        </section>
+        <div class="pre-footer-button">
+            <a href="second.html">
+            <button class="enter-app-btn">Enter app</button>
+            </a>
         </div>
-        <div class="box">
-            <div class="box-content">
-                <h3>JIBIN</h3>
-                <p>Project manager cammunity</p>
-            </div>
-            <div class="box-overlay">
-                <div class="box-overlay-content">
-                    <img src="jibin.jpg" width="300"></image>
+        <hr>
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="logo-section">
+                    <img src="logo.webp" alt="mindwave Logo" class="footer-logo">
+                    <span class="company-name">MindWaveDAO</span>
+                </div>
+                <p class="copyright">Copyright © 2025 MindWaveDAO. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="https://x.com/nilatoken" target="_blank" class="icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://discord.com/invite/ZfKXCxbVm2" target="_blank" class="icon">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="https://t.me/nilatokenss" target="_blank" class="icon">
+                        <i class="fab fa-telegram"></i>
+                    </a>
                 </div>
             </div>
-        </div>
-        <div class="box">
-            <div class="box-content">
-                <h3>BLAKE</h3>
-                <p>Marketing Director</p>
-            </div>
-            <div class="box-overlay">
-                <div class="box-overlay-content">
-                    <img src="blake.jpg" />
-                </div>
-            </div>
-        </div>
+        </footer>
+        <br>
     </div>
-    <div class="interactive-boxes">
-        <div class="box">
-            <div class="box-content">
-                <h3>Jigish Krishnan</h3>
-                <p>CO-FOUNDER & CTO</p>
-            </div>
-            <div class="box-overlay">
-                <div class="box-overlay-content">
-                    <img src="jigish.jpg" width="300" />
-                </div>
-            </div>
-        </div>
-        <div class="box">
-            <div class="box-content">
-                <h3>Lara Moreno</h3>
-                <p>Project Manager (Business)</p>
-            </div>
-            <div class="box-overlay">
-                <div class="box-overlay-content">
-                    <img src="lara.jpg" width="300" />
-                </div>
-            </div>
-        </div>
-        <div class="box">
-            <div class="box-content">
-                <h3>Tibin Thomas</h3>
-                <p>Project Manager (Tech)</p>
-            </div>
-            <div class="box-overlay">
-                <div class="box-overlay-content">
-                    <img src="tibin.jpg" width="300" />
-                </div>
-            </div>
-        </div>
-    </div>
-    <br> <br> <br> <br> <br> <br>
 
     <script>
-        const offersContainer = document.querySelector('.offers-container');
-        const offersBar = document.querySelector('.offers-bar');
-
-        offersContainer.addEventListener('mouseover', function() {
-            offersBar.style.display = 'block';
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // Special handling for logo container
+                if (entry.target.classList.contains('logo-container')) {
+                    if (entry.isIntersecting) {
+                        // Reset and trigger logo spin animation
+                        const logo = entry.target.querySelector('.logo');
+                        logo.style.animation = 'none';
+                        logo.offsetHeight; // Trigger reflow
+                        logo.style.animation = 'spinAndSlide 1.5s ease-out';
+                        
+                        // Reset and trigger text animation
+                        animateText();
+                    }
+                    return;
+                }
+    
+                // Get the default transform value based on element type
+                let defaultTransform = 'translateY(20px)';
+                if (entry.target.classList.contains('pioneering-text')) {
+                    defaultTransform = 'translateX(-100px)';
+                } else if (entry.target.classList.contains('pioneering1-text')) {
+                    defaultTransform = 'translateX(100px)';
+                } else if (entry.target.classList.contains('decorative-network')) {
+                    defaultTransform = 'translateX(100px)';
+                } else if (entry.target.classList.contains('decorative1-network')) {
+                    defaultTransform = 'translateX(-100px)';
+                }
+    
+                if (entry.isIntersecting) {
+                    // Add visible class and animate in
+                    entry.target.classList.add('visible');
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translate(0)';
+                } else {
+                    // Remove visible class and reset to initial state
+                    entry.target.classList.remove('visible');
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = defaultTransform;
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '-50px' // Adds a small buffer before animation triggers
         });
-
-        offersContainer.addEventListener('mouseout', function() {
-            offersBar.style.display = 'none';
-        });
-
-        document.addEventListener('scroll', function() {
-            const fadeText = document.querySelector('.fade-text');
-            const scrollPosition = window.scrollY;
-            const windowHeight = window.innerHeight;
-            const opacity = Math.min(scrollPosition / (windowHeight / 2), 1);
-            fadeText.style.opacity = opacity;
+    
+        function animateText() {
+            const text = "MindWaveDAO";
+            const brandName = document.getElementById('brandName');
+            brandName.innerHTML = '';
+            
+            text.split('').forEach((char, index) => {
+                const span = document.createElement('span');
+                span.textContent = char;
+                // Reset the animation by removing and re-adding the element
+                span.style.animation = 'none';
+                span.offsetHeight; // Trigger reflow
+                span.style.animation = `fadeInUp 0.2s ease-out forwards ${index * 0.1}s`;
+                brandName.appendChild(span);
+            });
+        }
+    
+        // Initialize animations when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initial animations
+            animateText();
+            
+            // Observe logo container for continuous animations
+            const logoContainer = document.querySelector('.logo-container');
+            observer.observe(logoContainer);
+            
+            // Set up regular sections and strategy cards
+            document.querySelectorAll('section:not(.pioneering):not(.pioneering1), .strategy-card, .footer').forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'all 0.6s ease-out';
+                observer.observe(element);
+            });
+    
+            // Set up pioneering sections with custom transitions
+            document.querySelectorAll('.decorative-network, .decorative1-network, .pioneering-text, .pioneering1-text').forEach(element => {
+                element.style.opacity = '0';
+                
+                // Set initial transform based on element type
+                if (element.classList.contains('pioneering-text')) {
+                    element.style.transform = 'translateX(-100px)';
+                } else if (element.classList.contains('pioneering1-text')) {
+                    element.style.transform = 'translateX(100px)';
+                } else if (element.classList.contains('decorative-network')) {
+                    element.style.transform = 'translateX(100px)';
+                } else if (element.classList.contains('decorative1-network')) {
+                    element.style.transform = 'translateX(-100px)';
+                }
+                
+                element.style.transition = 'all 1s ease-out';
+                observer.observe(element);
+            });
         });
     </script>
 </body>
