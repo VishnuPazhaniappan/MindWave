@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Mindwave DAO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #e6e9ec;
+            position: relative;
+        }
+
+        /* Background wave pattern */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='0' x2='0' y1='0' y2='100%25' gradientTransform='rotate(240)'%3E%3Cstop offset='0' stop-color='%23ffffff'/%3E%3Cstop offset='1' stop-color='%23e6e9ec'/%3E%3C/linearGradient%3E%3Cpattern patternUnits='userSpaceOnUse' id='b' width='540' height='450' x='0' y='0' viewBox='0 0 1080 900'%3E%3Cg fill-opacity='0.05'%3E%3Cpolygon fill='%23444' points='90 150 0 300 180 300'/%3E%3Cpolygon points='90 150 180 0 0 0'/%3E%3Cpolygon fill='%23AAA' points='270 150 360 0 180 0'/%3E%3Cpolygon fill='%23DDD' points='450 150 360 300 540 300'/%3E%3Cpolygon fill='%23999' points='450 150 540 0 360 0'/%3E%3Cpolygon points='630 150 540 300 720 300'/%3E%3Cpolygon fill='%23DDD' points='630 150 720 0 540 0'/%3E%3Cpolygon fill='%23444' points='810 150 720 300 900 300'/%3E%3Cpolygon fill='%23FFF' points='810 150 900 0 720 0'/%3E%3Cpolygon fill='%23DDD' points='990 150 900 300 1080 300'/%3E%3Cpolygon fill='%23444' points='990 150 1080 0 900 0'/%3E%3Cpolygon fill='%23DDD' points='90 450 0 600 180 600'/%3E%3Cpolygon points='90 450 180 300 0 300'/%3E%3Cpolygon fill='%23666' points='270 450 180 600 360 600'/%3E%3Cpolygon fill='%23AAA' points='270 450 360 300 180 300'/%3E%3Cpolygon fill='%23DDD' points='450 450 360 600 540 600'/%3E%3Cpolygon fill='%23999' points='450 450 540 300 360 300'/%3E%3Cpolygon fill='%23999' points='630 450 540 600 720 600'/%3E%3Cpolygon fill='%23FFF' points='630 450 720 300 540 300'/%3E%3Cpolygon points='810 450 720 600 900 600'/%3E%3Cpolygon fill='%23DDD' points='810 450 900 300 720 300'/%3E%3Cpolygon fill='%23AAA' points='990 450 900 600 1080 600'/%3E%3Cpolygon fill='%23444' points='990 450 1080 300 900 300'/%3E%3Cpolygon fill='%23222' points='90 750 0 900 180 900'/%3E%3Cpolygon points='270 750 180 900 360 900'/%3E%3Cpolygon fill='%23DDD' points='270 750 360 600 180 600'/%3E%3Cpolygon points='450 750 540 600 360 600'/%3E%3Cpolygon points='630 750 540 900 720 900'/%3E%3Cpolygon fill='%23444' points='630 750 720 600 540 600'/%3E%3Cpolygon fill='%23AAA' points='810 750 720 900 900 900'/%3E%3Cpolygon fill='%23666' points='810 750 900 600 720 600'/%3E%3Cpolygon fill='%23999' points='990 750 900 900 1080 900'/%3E%3Cpolygon fill='%23999' points='180 0 90 150 270 150'/%3E%3Cpolygon fill='%23444' points='360 0 270 150 450 150'/%3E%3Cpolygon fill='%23FFF' points='540 0 450 150 630 150'/%3E%3Cpolygon points='900 0 810 150 990 150'/%3E%3Cpolygon fill='%23222' points='0 300 -90 450 90 450'/%3E%3Cpolygon fill='%23FFF' points='0 300 90 150 -90 150'/%3E%3Cpolygon fill='%23FFF' points='180 300 90 450 270 450'/%3E%3Cpolygon fill='%23666' points='180 300 270 150 90 150'/%3E%3Cpolygon fill='%23222' points='360 300 270 450 450 450'/%3E%3Cpolygon fill='%23FFF' points='360 300 450 150 270 150'/%3E%3Cpolygon fill='%23444' points='540 300 450 450 630 450'/%3E%3Cpolygon fill='%23222' points='540 300 630 150 450 150'/%3E%3Cpolygon fill='%23AAA' points='720 300 630 450 810 450'/%3E%3Cpolygon fill='%23666' points='720 300 810 150 630 150'/%3E%3Cpolygon fill='%23FFF' points='900 300 810 450 990 450'/%3E%3Cpolygon fill='%23999' points='900 300 990 150 810 150'/%3E%3Cpolygon points='0 600 -90 750 90 750'/%3E%3Cpolygon fill='%23666' points='0 600 90 450 -90 450'/%3E%3Cpolygon fill='%23AAA' points='180 600 90 750 270 750'/%3E%3Cpolygon fill='%23444' points='180 600 270 450 90 450'/%3E%3Cpolygon fill='%23444' points='360 600 270 750 450 750'/%3E%3Cpolygon fill='%23999' points='360 600 450 450 270 450'/%3E%3Cpolygon fill='%23666' points='540 600 630 450 450 450'/%3E%3Cpolygon fill='%23222' points='720 600 630 750 810 750'/%3E%3Cpolygon fill='%23FFF' points='900 600 810 750 990 750'/%3E%3Cpolygon fill='%23222' points='900 600 990 450 810 450'/%3E%3Cpolygon fill='%23DDD' points='0 900 90 750 -90 750'/%3E%3Cpolygon fill='%23444' points='180 900 270 750 90 750'/%3E%3Cpolygon fill='%23FFF' points='360 900 450 750 270 750'/%3E%3Cpolygon fill='%23AAA' points='540 900 630 750 450 750'/%3E%3Cpolygon fill='%23FFF' points='720 900 810 750 630 750'/%3E%3Cpolygon fill='%23222' points='900 900 990 750 810 750'/%3E%3Cpolygon fill='%23222' points='1080 300 990 450 1170 450'/%3E%3Cpolygon fill='%23FFF' points='1080 300 1170 150 990 150'/%3E%3Cpolygon points='1080 600 990 750 1170 750'/%3E%3Cpolygon fill='%23666' points='1080 600 1170 450 990 450'/%3E%3Cpolygon fill='%23DDD' points='1080 900 1170 750 990 750'/%3E%3C/g%3E%3C/pattern%3E%3C/defs%3E%3Crect x='0' y='0' fill='url(%23a)' width='100%25' height='100%25'/%3E%3Crect x='0' y='0' fill='url(%23b)' width='100%25' height='100%25'/%3E%3C/svg%3E");
+            background-attachment: fixed;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .navbar {
+            background-color: #0a192f;
+            padding: 1rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .main-content {
+            padding: 4rem 2rem;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .main-title {
+            color: #0a192f;
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 0 4rem;
+            gap: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 4rem;
+        }
+        .features a {
+            background:none;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            flex: 1;
+            text-decoration: none;  
+        }
+        .features-card a {
+            color: inherit;               /* Inherit the text color from the parent element */
+            text-decoration: none;        /* Remove underline */
+            font: inherit;                /* Inherit font style and size */
+            border: none;                 /* Remove any default border */
+            background: none;             /* Remove background color */
+            padding: 0;                   /* Reset padding */
+            margin: 0;                    /* Reset margin */
+            display: inline;              /* Ensure it stays inline without affecting surrounding elements */
+            cursor: pointer;              /* Keep the pointer cursor */
+            outline: none;                /* Remove outline on focus */
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            flex: 1;
+        }
+
+        .feature-card h2 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .feature-card p {
+            color: #333;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            background-color: transparent;
+            padding: 4rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4rem;
+        }
+
+        .footer-logo img {
+            width: 100px;
+            justify-items: center;
+        }
+
+        .footer-section h3 {
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #0a192f;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .contact-info {
+            color: #0a192f;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1024px) {
+            .features {
+                padding: 0 2rem;
+            }
+            
+            footer {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .features {
+                flex-direction: column;
+                padding: 0 1rem;
+            }
+
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            footer {
+                grid-template-columns: 1fr;
+                padding: 2rem;
+            }
+        }
+        .social-icons {
+        justify-content: start;
+        font-size: 18px;
+        color: #ffd700;
+        }
+
+        .icon {
+            margin: 0 12px;
+            color: #B79B30;
+            justify-content: left;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            background-color: none;
+            min-height: 100vh;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+        .chart-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .content {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #f59e0b;
+            margin-bottom: 1.5rem;
+        }
+
+        .description {
+            color: #374151;
+            font-size: 1.125rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .token-info {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .token-info div {
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .token-info div:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo.webp" alt="Logo" style="border-radius: 50%;">
+        </div>
+        <div class="nav-links">
+            <a href="second.html">HOME</a>
+            <a href="#about">ABOUT US</a>
+            <a href="#tokenomics">TOKENOMICS</a>
+            <a href="#community">JOIN COMMUNITY</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="grid">
+            <div class="image-container">
+                <img src="chart1.png" alt="Distribution Chart" class="chart-image">
+            </div>
+            
+            <div class="content">
+                <h2 class="title">Tokenomics</h2>
+                
+                <div class="description">
+                    <p style="margin-bottom: 1rem">
+                        The token is a utility token that will provide token holders exclusive 
+                        access to premium features and priority participation in strategic initiatives.
+                    </p>
+                    
+                    <p style="margin-bottom: 1rem">
+                        Further, it will empower token holders with governance rights, enabling 
+                        them to actively participate in decision-making processes related to the 
+                        management and evolution of the platform.
+                    </p>
+                    
+                    <p>
+                        Lastly, the tokens will be used as utility-driven incentives to reward 
+                        token holders for their engagement and contribution within the ecosystem.
+                    </p>
+                </div>
+
+                <div class="token-info">
+                    <div>Token Ticker: TOKEN</div>
+                    <div>Token Type: BEP-20</div>
+                    <div>Total Token Supply: 1,000,000,000</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <center><hr width="80%" /></center>
+
+    <footer style="background-color: transparent; padding: 4rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4rem;">
+    <!-- Logo Section -->
+    <div class="footer-section">
+        <div class="footer-logo">
+            &nbsp;&nbsp;&nbsp;<img src="logo.webp" alt="Footer Logo" style="width: 100px; border-radius: 50%;">
+        </div>
+        <br>
+        <div class="social-icons">
+            <a href="https://x.com/nilatoken" target="_blank" class="icon">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://discord.com/invite/ZfKXCxbVm2" target="_blank" class="icon">
+                <i class="fab fa-discord"></i>
+            </a>
+            <a href="https://t.me/nilatokenss" target="_blank" class="icon">
+                <i class="fab fa-telegram"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Links Section -->
+    <div class="footer-section">
+        <h3 style="color: #ffd700; margin-bottom: 1.5rem; font-size: 1.2rem;">Links</h3>
+        <ul style="list-style: none; margin: 0; padding: 0;">
+            <li style="margin-bottom: 0.4rem;"><a href="#about" style="color: #0a192f; text-decoration: none;">About Us</a></li>
+            <li style="margin-bottom: 0.4rem;"><a href="3rd.html" style="color: #0a192f; text-decoration: none;">Tokenomics</a></li>
+            <li style="margin-bottom: 0.4rem;"><a href="#roadmap" style="color: #0a192f; text-decoration: none;">Roadmap</a></li>
+            <li style="margin-bottom: 0.4rem;"><a href="https://www.mindwavedao.com/wp-content/uploads/Mindwave-LitePaper-v2.5.pdf" style="color: #0a192f; text-decoration: none;">LitePaper</a></li>
+            <li style="margin-bottom: 0.4rem;"><a href="https://bscscan.com/token/0x00f8Da33734FeB9b946fEC2228C25072D2e2E41f" style="color: #0a192f; text-decoration: none;">Smart Contract</a></li>
+            <li style="margin-bottom: 0.4rem;"><a href="#community" style="color: #0a192f; text-decoration: none;">Community Building</a></li>
+        </ul>
+    </div>
+
+    <!-- Useful Links Section -->
+    <div class="footer-section">
+        <h3 style="color: #ffd700; margin-bottom: 1.5rem; font-size: 1.2rem;">Useful Links</h3>
+        <ul style="list-style: none; margin: 0; padding: 0;">
+            <li style="margin-bottom: 0.4rem;"><a href="#linktree" style="color: #0a192f; text-decoration: none;">Linktree</a></li>
+            <li style="margin-bottom: 0.4rem;"><a href="#disclaimer" style="color: #0a192f; text-decoration: none;">Disclaimer</a></li>
+            <li style="margin-bottom: 0.4rem;"><a href="#privacy" style="color: #0a192f; text-decoration: none;">Privacy Policy</a></li>
+            <li style="margin-bottom: 0.4rem;"><a href="#terms" style="color: #0a192f; text-decoration: none;">Terms & Conditions</a></li>
+            <li style="margin-bottom: 0.4rem;"><a href="#contact" style="color: #0a192f; text-decoration: none;">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Office Section -->
+    <div class="footer-section">
+        <h3 style="color: #ffd700; margin-bottom: 1.5rem; font-size: 1.2rem;">Our Office</h3>
+        <div style="color: #0a192f; font-size: 0.9rem; line-height: 1.6;">
+            <p>1st Floor,</p>
+            <p>Banyan House</p>
+            <p>Vivea Business Park,</p>
+            <p>Moka Mauritius</p>
+            <p style="margin-top: 1rem;">
+                <a href="mailto:contact@mindwavedao.com" style="color: #0a192f; text-decoration: none;">contact@mindwavedao.com</a>
+            </p>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Responsive navigation menu toggle
+        const navbar = document.querySelector('.navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                navbar.classList.remove('scroll-up');
+                return;
+            }
+            
+            if (currentScroll > lastScroll && !navbar.classList.contains('scroll-down')) {
+                navbar.classList.remove('scroll-up');
+                navbar.classList.add('scroll-down');
+            } else if (currentScroll < lastScroll && navbar.classList.contains('scroll-down')) {
+                navbar.classList.remove('scroll-down');
+                navbar.classList.add('scroll-up');
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Add fade-in animation for feature cards
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const tokenInfo = document.querySelector('.token-info');
+            
+            tokenInfo.addEventListener('mouseover', function() {
+                this.style.backgroundColor = '#f3f4f6';
+            });
+            
+            tokenInfo.addEventListener('mouseout', function() {
+                this.style.backgroundColor = '#f8f9fa';
+            });
+        });
+    
+        
+    </script>
+
+    <style>
+        /* Additional animations and transitions */
+       
+
+        .navbar {
+            transition: transform 0.3s ease;
+        }
+
+        .navbar.scroll-down {
+            transform: translateY(-100%);
+        }
+
+        .navbar.scroll-up {
+            transform: translateY(0);
+        }
+
+        .nav-links a {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #ffd700;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+       footer {
+        background-color: transparent;
+        padding: 4rem;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4rem;
+    }
+
+    .footer-section h3 {
+        color: #ffd700;
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+    }
+
+    .footer-links a {
+        color: #0a192f;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+        color: #ffd700;
+    }
+
+    @media (max-width: 1024px) {
+        footer {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        footer {
+            grid-template-columns: 1fr;
+            padding: 2rem;
+        }
+    }
+    </style>
+</body>
+</html>
+        </div>
